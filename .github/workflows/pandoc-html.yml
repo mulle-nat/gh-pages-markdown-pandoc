@@ -42,10 +42,10 @@ jobs:
             # Calculate the depth of the file and prepend the appropriate number of ../
             depth=$(echo "$file" | awk -F'/' '{print NF-1}')
             # If the file is at the root level, use ./style.css
-            if [ "$depth" -eq 0 ]; then
+            if [ "$depth" -eq 1 ]; then
               css_path="style.css"
             else
-              css_path=$(printf '../%.0s' $(seq 1 $depth))style.css
+              css_path=$(printf '../%.0s' $(seq 2 $depth))style.css
             fi
             pandoc "${file}" -o "${html_file}" \
                              --lua-filter=md-to-html-link.lua \
